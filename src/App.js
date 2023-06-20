@@ -4,7 +4,7 @@ function App() {
   return (
     <div className="px-[50px]">
       <Header />
-      <div>
+      <div className='overflow-x-auto'>
         <table className="w-[70%] mx-auto">
           <thead className="bg-gray-50 border-b-2 border-gray-200">
             <tr>
@@ -18,10 +18,10 @@ function App() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            <tr className="bg-white">
-              <td className="p-3 text-gray-700 text-md">01</td>
-              <td className="p-3 text-gray-700 text-md">this is title 1</td>
-              <td className="p-3 text-gray-700 text-md">
+            <tr className="hover:bg-gray-100 duration-75">
+              <td className="p-3 text-gray-700 text-md whitespace-nowrap">01</td>
+              <td className="p-3 text-gray-700 text-md whitespace-nowrap">this is title 1</td>
+              <td className="p-3 text-gray-700 text-md whitespace-nowrap">
                 <div className="flex items-center gap-2">
                   <button className="px-2 py-[1px] bg-green-500 rounded-md text-white">
                     Edit
@@ -32,10 +32,10 @@ function App() {
                 </div>
               </td>
             </tr>
-            <tr className="bg-gray-50">
-              <td className="p-3 text-gray-700 text-md">02</td>
-              <td className="p-3 text-gray-700 text-md">this is title 1</td>
-              <td className="p-3 text-gray-700 text-md">
+            <tr className="bg-gray-50 hover:bg-gray-100 duration-75">
+              <td className="p-3 text-gray-700 text-md whitespace-nowrap">02</td>
+              <td className="p-3 text-gray-700 text-md whitespace-nowrap">this is title 1</td>
+              <td className="p-3 text-gray-700 text-md whitespace-nowrap">
                 <div className="flex items-center gap-2">
                   <button className="px-2 py-[1px] bg-green-500 rounded-md text-white">
                     Edit
