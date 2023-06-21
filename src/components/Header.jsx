@@ -1,19 +1,34 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
+const nonActiveClass = 'text-white no-underline duration-100 ease';
+const activeClass = 'underline text-blue-500 duration-100 ease';
 
 const Header = () => {
   return (
     <div className="mb-6 mt-4">
       <h1 className="my-4">CRUD APP</h1>
-      <ul className=" bg-black h-[50px] list-none flex items-center px-1">
+      <ul className=" bg-black h-[50px] list-none flex items-center px-1 rounded-sm">
         <li className="ml-[10px] mr-[10px]">
-          <a href="/" className="text-white no-underline">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? activeClass : nonActiveClass
+            }
+            end
+          >
             Home
-          </a>
+          </NavLink>
         </li>
         <li className="mr-[10px]">
-          <a href="/" className="text-white no-underline">
+          <NavLink
+            to="post/add"
+            className={({ isActive }) =>
+              isActive ? activeClass : nonActiveClass
+            }
+          >
             Add Post
-          </a>
+          </NavLink>
         </li>
         <li className="ml-auto mr-[10px] text-white">login</li>
       </ul>
