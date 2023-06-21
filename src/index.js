@@ -2,7 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
 import { RootLayout } from './pages/RootLayout';
 import { PostsList } from './components/PostsList';
 import { PostDetails } from './pages/PostDetails';
@@ -18,7 +22,16 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <PostsList /> },
       { path: 'post', element: <PostsList /> },
-      { path: 'post/:id/details', element: <PostDetails /> },
+      {
+        path: 'post/:id/details',
+        element: <PostDetails />,
+        loader: ({ params }) => {
+          if (isNaN(params.id)) {
+            throw new Response('Bad Request', { status: 400 });
+          }
+        },
+      },
+      { path: 'post/:id', element: <Navigate to="details" /> },
       { path: 'post/:id/edit', element: <EditPost /> },
       { path: 'post/add', element: <AddPost /> },
     ],
