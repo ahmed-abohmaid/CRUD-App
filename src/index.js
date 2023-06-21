@@ -8,11 +8,13 @@ import { PostsList } from './components/PostsList';
 import { PostDetails } from './pages/PostDetails';
 import { EditPost } from './pages/EditPost';
 import { AddPost } from './pages/AddPost';
+import { ErrorPage } from './pages/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <PostsList /> },
       { path: 'post', element: <PostsList /> },

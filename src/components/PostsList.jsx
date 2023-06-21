@@ -22,10 +22,10 @@ export const PostsList = () => {
           </td>
           <td className="p-3 text-gray-700 text-md whitespace-nowrap">
             <div className="flex items-center gap-2">
-              <button className="px-2 py-[1px] bg-green-500 rounded-md text-white">
+              <button className="px-2 py-[1px] hover:bg-green-600 duration-100 ease-in bg-green-500 rounded-md text-white">
                 Edit
               </button>
-              <button className="px-2 py-[1px] bg-red-500 rounded-md text-white">
+              <button className="px-2 py-[1px] hover:bg-red-600 duration-100 ease-in bg-red-500 rounded-md text-white">
                 Delete
               </button>
             </div>
@@ -38,10 +38,10 @@ export const PostsList = () => {
           </td>
           <td className="p-3 text-gray-700 text-md whitespace-nowrap">
             <div className="flex items-center gap-2">
-              <button className="px-2 py-[1px] bg-green-500 rounded-md text-white">
+              <button className="px-2 py-[1px] hover:bg-green-600 duration-100 ease-in bg-green-500 rounded-md text-white">
                 Edit
               </button>
-              <button className="px-2 py-[1px] bg-red-500 rounded-md text-white">
+              <button className="px-2 py-[1px] hover:bg-red-600 duration-100 ease-in bg-red-500 rounded-md text-white">
                 Delete
               </button>
             </div>
