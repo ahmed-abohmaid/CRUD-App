@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPosts } from '../state/postSlice';
 
 export const PostsList = () => {
+  const dispatch = useDispatch();
+  const { records, loading, error } = useSelector((state) => state.postReducer);
+
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, [dispatch]);
+
   return (
     <table>
       <thead className="bg-gray-50 border-b-2 border-gray-200">
