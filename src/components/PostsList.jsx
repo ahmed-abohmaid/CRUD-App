@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts } from '../state/postSlice';
+import { fetchPosts } from '../state/data';
 import styles from './global.module.css';
 import { PostsListTable } from './PostsListTable';
 
@@ -19,7 +19,7 @@ export const PostsList = () => {
       <span className={`${styles.loader}`}></span>
     </div>
   ) : (
-    <table>
+    <table className='w-full'>
       <PostsListTable records={records} error={error} />
     </table>
   );

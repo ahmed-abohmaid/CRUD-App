@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
+import DeletePopup from './DeletePopup';
 
 export const PostsTableBody = ({ post, index }) => {
+  let [Popup, setPopup] = useState(false);
+
+  const handleDeleteBtn = useCallback(() => {
+    setPopup(true);
+  }, []);
+
   return (
     <tr
       className={`hover:bg-gray-100 duration-75 ${
@@ -18,11 +25,15 @@ export const PostsTableBody = ({ post, index }) => {
           <button className="px-2 py-[1px] hover:bg-green-600 duration-100 ease-in bg-green-500 rounded-md text-white">
             Edit
           </button>
-          <button className="px-2 py-[1px] hover:bg-red-600 duration-100 ease-in bg-red-500 rounded-md text-white">
+          <button
+            className="px-2 py-[1px] hover:bg-red-600 duration-100 ease-in bg-red-500 rounded-md text-white"
+            onClick={() => handleDeleteBtn()}
+          >
             Delete
           </button>
         </div>
       </td>
+      {Popup && <DeletePopup post={post} setPopup={setPopup} />}
     </tr>
   );
 };
