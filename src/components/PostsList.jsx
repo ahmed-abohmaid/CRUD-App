@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts } from '../state/postSlice';
-import { PostsTableBody } from './PostsTableBody';
-
 import styles from './global.module.css';
+import { PostsListTable } from './PostsListTable';
 
 export const PostsList = () => {
   const dispatch = useDispatch();
@@ -21,34 +20,7 @@ export const PostsList = () => {
     </div>
   ) : (
     <table>
-      <thead className="bg-gray-50 border-b-2 border-gray-200">
-        <tr>
-          <th className="p-3 text-md font-semibold tracking-wide text-left">
-            No.
-          </th>
-          <th className="p-3 w-[70%] text-md font-semibold tracking-wide text-left">
-            Title
-          </th>
-          <th className="p-3 w-[10%] text-md font-semibold tracking-wide text-left"></th>
-        </tr>
-      </thead>
-      <tbody className="divide-y divide-gray-200">
-        {error ? (
-          <tr>
-            <td className="p-3 text-gray-700 text-md whitespace-nowrap">
-              {error}
-            </td>
-          </tr>
-        ) : (
-          records.map((post, index) => (
-            <PostsTableBody
-              key={post.id}
-              index={index}
-              post={post}
-            />
-          ))
-        )}
-      </tbody>
+      <PostsListTable records={records} error={error} />
     </table>
   );
 };
