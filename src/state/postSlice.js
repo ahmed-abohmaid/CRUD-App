@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchPosts, deletePost } from './data';
+import { fetchPosts, deletePost, addPost } from './data';
 
 const initialState = { records: [], isLoading: false, error: null };
 
@@ -18,6 +18,20 @@ const postSlice = createSlice({
       state.records.push(...action.payload);
     });
     builder.addCase(fetchPosts.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
+
+    /* Add Post */
+    builder.addCase(addPost.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(addPost.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.records.push(action.payload);
+    });
+    builder.addCase(addPost.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     });

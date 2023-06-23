@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts } from '../state/data';
-import styles from './global.module.css';
-import { PostsListTable } from './PostsListTable';
+import styles from '../components/global.module.css';
+import { PostsListTable } from '../components/PostsListTable';
 
-export const PostsList = () => {
+export const Home = () => {
   const dispatch = useDispatch();
   const { records, isLoading, error } = useSelector(
     (state) => state.postReducer
@@ -19,7 +19,7 @@ export const PostsList = () => {
       <span className={`${styles.loader}`}></span>
     </div>
   ) : (
-    <table className='w-full'>
+    <table className="w-full">
       <PostsListTable records={records} error={error} />
     </table>
   );

@@ -19,10 +19,28 @@ export const deletePost = createAsyncThunk(
   async (id, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      await fetch('http://localhost:5000/posts/:id', {
+      await fetch(`http://localhost:5000/posts/${id}`, {
         method: 'DELETE',
       });
       return id;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addPost = createAsyncThunk(
+  'posts/addPost',
+  async (postDetails, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await fetch('http://localhost:5000/posts', {
+        method: 'POST',
+        body: JSON.stringify(postDetails),
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      });
+      const data = res.json();
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }

@@ -9,9 +9,8 @@ import {
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './state';
-
+import { Home } from './pages/Home';
 import { RootLayout } from './pages/RootLayout';
-import { PostsList } from './components/PostsList';
 import { PostDetails } from './pages/PostDetails';
 import { EditPost } from './pages/EditPost';
 import { AddPost } from './pages/AddPost';
@@ -23,8 +22,8 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <PostsList /> },
-      { path: 'post', element: <PostsList /> },
+      { index: true, element: <Home /> },
+      { path: 'post', element: <Home /> },
       {
         path: 'post/:id/details',
         element: <PostDetails />,
@@ -44,8 +43,8 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
   // </React.StrictMode>
 );
