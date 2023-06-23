@@ -21,7 +21,7 @@ const postSlice = createSlice({
     builder.addCase(fetchPosts.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-      toast.error('Sorry, error happened');
+      toast.error(`Sorry, ${action.payload}`);
     });
 
     /* Add Post */
@@ -37,7 +37,7 @@ const postSlice = createSlice({
     builder.addCase(addPost.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-      toast.error('Sorry, error has been occured');
+      toast.error(`Sorry, ${action.payload}`);
     });
 
     /* Delete Post */
@@ -55,7 +55,7 @@ const postSlice = createSlice({
     builder.addCase(deletePost.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-      toast.error('Sorry, error has been occured');
+      toast.error(`Sorry, ${action.payload}`);
     });
   },
 });
