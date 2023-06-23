@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchPosts, deletePost, addPost } from './data';
+import { toast } from 'react-toastify';
 
 const initialState = { records: [], isLoading: false, error: null };
 
@@ -20,6 +21,7 @@ const postSlice = createSlice({
     builder.addCase(fetchPosts.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+      toast.error('Sorry, error happened');
     });
 
     /* Add Post */
@@ -30,10 +32,12 @@ const postSlice = createSlice({
     builder.addCase(addPost.fulfilled, (state, action) => {
       state.isLoading = false;
       state.records.push(action.payload);
+      toast.success('Post has been added successfully');
     });
     builder.addCase(addPost.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+      toast.error('Sorry, error has been occured');
     });
 
     /* Delete Post */
@@ -46,10 +50,12 @@ const postSlice = createSlice({
       state.records = state.records.filter(
         (post) => post.id !== action.payload
       );
+      toast.success('Post has been deleted successfully');
     });
     builder.addCase(deletePost.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+      toast.error('Sorry, error has been occured');
     });
   },
 });
