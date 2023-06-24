@@ -17,6 +17,8 @@ export const AddPost = () => {
     dispatch(addPost({ id, title, discription }))
       .unwrap() // To not submit if the server isn't work (read the docs.)
       .then(() => {
+        setTitle('');
+        setDiscription('');
         setTimeout(() => navigate('/'), 1000);
       });
   };
