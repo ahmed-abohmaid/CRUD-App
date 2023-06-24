@@ -16,7 +16,7 @@ const DeletePopup = ({ post, setPopup }) => {
         className="fixed p-4 rounded-t-xl top-1/2 left-1/2 z-50 sm:w-[600px] w-[280px] bg-white sm:rounded-md origin-center"
       >
         <p className="text-lg tex">
-          Are you sure to delete
+          Are you sure to delete{' '}
           <span className="text-blue-600">"{post.title}"</span> post?
         </p>
         <div className="flex items-center gap-2 mt-5 justify-end">

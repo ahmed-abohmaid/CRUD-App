@@ -6,14 +6,14 @@ import { useNavigate } from 'react-router-dom';
 export const AddPost = () => {
   const [title, setTitle] = useState('');
   const [discription, setDiscription] = useState('');
-  const { isLoading } = useSelector((state) => state.postReducer);
+  const { records, isLoading } = useSelector((state) => state.postReducer);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let id = Math.floor(Math.random() * 500);
+    let id = records[records.length - 1].id + 1;
     dispatch(addPost({ id, title, discription }))
       .unwrap() // To not submit if the server isn't work (read the docs.)
       .then(() => {
