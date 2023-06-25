@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { deletePost } from '../state/data';
 import { motion } from 'framer-motion';
 
-const DeletePopup = ({ post, setPopup }) => {
+const ConfirmDelete = ({ post, setPopup }) => {
   const dispatch = useDispatch();
 
   return (
@@ -38,4 +38,4 @@ const DeletePopup = ({ post, setPopup }) => {
   );
 };
 
-export default memo(DeletePopup);
+export default memo(ConfirmDelete);

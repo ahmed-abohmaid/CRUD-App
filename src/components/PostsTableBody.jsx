@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import DeletePopup from './DeletePopup';
+import ConfirmDelete from './ConfirmDelete';
 
 export const PostsTableBody = ({ post, index }) => {
   let [Popup, setPopup] = useState(false);
@@ -35,7 +35,7 @@ export const PostsTableBody = ({ post, index }) => {
           </div>
         </td>
       </tr>
-      {Popup && <DeletePopup post={post} setPopup={setPopup} />}
+      {Popup && <ConfirmDelete post={post} setPopup={setPopup} />}
     </>
   );
 };
