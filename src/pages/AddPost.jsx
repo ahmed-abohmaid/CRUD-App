@@ -7,9 +7,9 @@ export const AddPost = () => {
   const { isLoading, error } = useSelector((state) => state.postReducer);
 
   const [title, setTitle] = useState('');
-  const [discription, setDiscription] = useState('');
+  const [description, setDescription] = useState('');
   const [isTitleEmpty, setIsTitleEmpty] = useState(false);
-  const [isDiscriptionEmpty, setIsDiscriptionEmpty] = useState(false);
+  const [isdescriptionEmpty, setIsDescriptionEmpty] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -18,20 +18,20 @@ export const AddPost = () => {
     e.preventDefault();
     let id = Math.floor(Math.random() * 500);
 
-    if (!title && !discription) {
+    if (!title && !description) {
       setIsTitleEmpty(true);
-      return setIsDiscriptionEmpty(true);
+      return setIsDescriptionEmpty(true);
     } else if (!title) {
       return setIsTitleEmpty(true);
-    } else if (!discription) {
-      return setIsDiscriptionEmpty(true);
+    } else if (!description) {
+      return setIsDescriptionEmpty(true);
     }
 
-    dispatch(addPost({ id, title, discription }))
+    dispatch(addPost({ id, title, description }))
       .unwrap() // To not submit if the server isn't work (read the docs.)
       .then(() => {
         setTitle('');
-        setDiscription('');
+        setDescription('');
         setTimeout(() => navigate('/'), 1000);
       });
   };
@@ -62,23 +62,23 @@ export const AddPost = () => {
         )}
       </div>
       <div className="flex flex-col mb-3">
-        <label htmlFor="discription" className="text-md mb-1">
-          Discription:
+        <label htmlFor="description" className="text-md mb-1">
+          Description:
         </label>
         <textarea
           type="text"
-          placeholder="Add your discription here"
-          id="discription"
-          value={discription}
+          placeholder="Add your description here"
+          id="description"
+          value={description}
           onChange={(e) => {
-            setDiscription(e.target.value);
-            setIsDiscriptionEmpty(false);
+            setDescription(e.target.value);
+            setIsDescriptionEmpty(false);
           }}
           className={`outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-black/40 placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in ${
-            isDiscriptionEmpty && 'border-red-500 placeholder:text-red-500'
+            isdescriptionEmpty && 'border-red-500 placeholder:text-red-500'
           }`}
         />
-        {isDiscriptionEmpty && (
+        {isdescriptionEmpty && (
           <p className="text-red-500 mt-[3px] pl-[5px] text-sm mb-0">
             This field is required.
           </p>
