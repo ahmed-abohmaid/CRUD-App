@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import ConfirmDelete from './ConfirmDelete';
+import { Link } from 'react-router-dom';
 
 export const PostsTableBody = ({ post, index }) => {
   let [Popup, setPopup] = useState(false);
@@ -19,7 +20,7 @@ export const PostsTableBody = ({ post, index }) => {
           {index < 10 ? `0${index}` : index}
         </td>
         <td className="p-3 text-gray-700 text-md whitespace-nowrap">
-          {post.title}
+          <Link to={`post/${post.id}/details`}>{post.title}</Link>
         </td>
         <td className="p-3 text-gray-700 text-md whitespace-nowrap">
           <div className="flex items-center gap-2">

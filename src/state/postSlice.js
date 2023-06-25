@@ -18,6 +18,7 @@ const postSlice = createSlice({
     builder.addCase(fetchPosts.pending, (state) => {
       state.isLoading = true;
       state.error = null;
+      state.records = [];
     });
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
       state.isLoading = false;
