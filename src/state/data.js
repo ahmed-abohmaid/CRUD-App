@@ -14,6 +14,20 @@ export const fetchPosts = createAsyncThunk(
   }
 );
 
+export const fetchPost = createAsyncThunk(
+  'posts/fetchPost',
+  async (id, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await fetch(`http://localhost:5000/posts/${id}`);
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const deletePost = createAsyncThunk(
   'posts/deletePost',
   async (id, thunkAPI) => {
@@ -35,7 +49,7 @@ export const addPost = createAsyncThunk(
     const { rejectWithValue, getState } = thunkAPI;
     let { authReducer } = getState();
     postDetails.user = authReducer.id;
-    
+
     try {
       const res = await fetch('http://localhost:5000/posts', {
         method: 'POST',

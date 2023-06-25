@@ -1,8 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchPosts, deletePost, addPost } from './data';
+import { fetchPosts, deletePost, addPost, fetchPost } from './data';
 import { toast } from 'react-toastify';
 
-const initialState = { records: [], isLoading: false, error: null };
+const initialState = {
+  records: [],
+  isLoading: false,
+  error: null,
+  record: null,
+};
 
 const postSlice = createSlice({
   name: 'posts',
@@ -19,6 +24,21 @@ const postSlice = createSlice({
       state.records.push(...action.payload);
     });
     builder.addCase(fetchPosts.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+      toast.error(`Sorry, ${action.payload}`);
+    });
+
+    /* Fetch Single Post */
+    builder.addCase(fetchPost.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(fetchPost.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.record = action.payload;
+    });
+    builder.addCase(fetchPost.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
       toast.error(`Sorry, ${action.payload}`);
