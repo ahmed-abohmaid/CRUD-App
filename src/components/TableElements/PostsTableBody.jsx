@@ -1,13 +1,9 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import ConfirmDelete from './ConfirmDelete';
 import { Link } from 'react-router-dom';
 
 export const PostsTableBody = ({ post, index }) => {
   let [Popup, setPopup] = useState(false);
-
-  const handleDeleteBtn = useCallback(() => {
-    setPopup(true);
-  }, []);
 
   return (
     <>
@@ -31,7 +27,7 @@ export const PostsTableBody = ({ post, index }) => {
             </button>
             <button
               className="px-2 py-[1px] hover:bg-red-600 duration-100 ease-in bg-red-500 rounded-md text-white"
-              onClick={() => handleDeleteBtn()}
+              onClick={() => setPopup(true)}
             >
               Delete
             </button>

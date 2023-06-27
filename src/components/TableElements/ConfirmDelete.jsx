@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { deletePost } from '../../state/data';
 import { motion } from 'framer-motion';
@@ -38,4 +38,4 @@ const ConfirmDelete = ({ post, setPopup }) => {
   );
 };
 
-export default memo(ConfirmDelete);
+export default ConfirmDelete;
