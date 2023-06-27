@@ -27,7 +27,7 @@ const ConfirmDelete = ({ post, setPopup }) => {
             Cancle
           </button>
           <button
-            className="px-2 py-[1px] hover:bg-red-600 duration-100 ease-in bg-red-500 rounded-md text-white"
+            className="px-2 py-[1px] hover:bg-red-500 duration-100 ease-in bg-red-600 rounded-md text-white"
             onClick={() => dispatch(deletePost(post.id))}
           >
             Delete

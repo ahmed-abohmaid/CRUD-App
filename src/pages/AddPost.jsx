@@ -85,7 +85,7 @@ export const AddPost = () => {
         )}
       </div>
       <button
-        className="mt-1 py-2 px-4 hover:bg-blue-600 duration-100 ease-in bg-blue-500 rounded-md text-white"
+        className="mt-1 py-2 px-4 hover:bg-blue-500 duration-100 ease-in bg-blue-600 rounded-md text-white"
         type="submit"
         disabled={isLoading}
       >

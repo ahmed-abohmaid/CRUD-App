@@ -25,13 +25,13 @@ export const PostsTableBody = ({ post, index }) => {
         <td className="p-3 text-gray-700 text-md whitespace-nowrap">
           <div className="flex items-center gap-2">
             <button
-              className="px-2 py-[1px] hover:bg-green-600 duration-100 ease-in bg-green-500 rounded-md text-white"
+              className="px-2 py-[1px] hover:bg-green-500 duration-100 ease-in bg-green-600 rounded-md text-white"
               onClick={() => navigate(`post/${post.id}/edit`)}
             >
               Edit
             </button>
             <button
-              className="px-2 py-[1px] hover:bg-red-600 duration-100 ease-in bg-red-500 rounded-md text-white"
+              className="px-2 py-[1px] hover:bg-red-500 duration-100 ease-in bg-red-600 rounded-md text-white"
               onClick={() => setPopup(true)}
             >
               Delete
