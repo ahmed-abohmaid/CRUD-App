@@ -10,16 +10,16 @@ export const PostDetails = () => {
       <Loading isLoading={isLoading} error={error}>
         <div className="flex justify-between items-center mb-4">
           <p className="text-2xl">
-            <span className="text-blue-500 font-bold">Title: </span>
+            <span className="text-blue-500">Title: </span>
             {record?.title}
           </p>
           <p className="text-2xl">
-            <span className="text-blue-500 font-bold">ID: </span>
+            <span className="text-blue-500">ID: </span>
             {record?.id}
           </p>
         </div>
         <div className="text-2xl">
-          <p className="text-blue-500 font-bold mb-1">Post description: </p>
+          <p className="text-blue-500 mb-1">Post description: </p>
           <p className="pl-3">{record?.description}</p>
         </div>
       </Loading>

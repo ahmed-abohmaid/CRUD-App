@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import ConfirmDelete from './ConfirmDelete';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const PostsTableBody = ({ post, index }) => {
   let [Popup, setPopup] = useState(false);
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -22,7 +24,10 @@ export const PostsTableBody = ({ post, index }) => {
         </td>
         <td className="p-3 text-gray-700 text-md whitespace-nowrap">
           <div className="flex items-center gap-2">
-            <button className="px-2 py-[1px] hover:bg-green-600 duration-100 ease-in bg-green-500 rounded-md text-white">
+            <button
+              className="px-2 py-[1px] hover:bg-green-600 duration-100 ease-in bg-green-500 rounded-md text-white"
+              onClick={() => navigate(`post/${post.id}/edit`)}
+            >
               Edit
             </button>
             <button
