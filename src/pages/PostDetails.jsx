@@ -8,8 +8,20 @@ export const PostDetails = () => {
   return (
     <div>
       <Loading isLoading={isLoading} error={error}>
-        <p>Title: {record?.title}</p>
-        <p>Description: {record?.description}</p>
+        <div className="flex justify-between items-center mb-4">
+          <p className="text-2xl">
+            <span className="text-blue-500 font-bold">Title: </span>
+            {record?.title}
+          </p>
+          <p className="text-2xl">
+            <span className="text-blue-500 font-bold">ID: </span>
+            {record?.id}
+          </p>
+        </div>
+        <div className="text-2xl">
+          <p className="text-blue-500 font-bold mb-1">Post description: </p>
+          <p className="pl-3">{record?.description}</p>
+        </div>
       </Loading>
     </div>
   );

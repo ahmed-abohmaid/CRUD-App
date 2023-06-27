@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         element: <PostDetails />,
         loader: ({ params }) => {
           if (isNaN(params.id)) {
-            throw new Response('Bad Request', { status: 400 });
+            throw new Response('Bad Request', { status: 400 }); // To make it go to error page (from documentation)
           }
         },
       },

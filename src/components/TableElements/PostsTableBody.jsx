@@ -20,7 +20,9 @@ export const PostsTableBody = ({ post, index }) => {
           {index < 10 ? `0${index}` : index}
         </td>
         <td className="p-3 text-gray-700 text-md whitespace-nowrap">
-          <Link to={`post/${post.id}/details`}>{post.title}</Link>
+          <Link to={`post/${post.id}/details`} className="hover:underline">
+            {post.title}
+          </Link>
         </td>
         <td className="p-3 text-gray-700 text-md whitespace-nowrap">
           <div className="flex items-center gap-2">
