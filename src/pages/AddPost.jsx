@@ -4,12 +4,13 @@ import { addPost } from '../state/data';
 import { useNavigate } from 'react-router-dom';
 
 export const AddPost = () => {
-  const { isLoading, error } = useSelector((state) => state.postReducer);
+  const { isLoading } = useSelector((state) => state.postReducer);
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [isTitleEmpty, setIsTitleEmpty] = useState(false);
   const [isdescriptionEmpty, setIsDescriptionEmpty] = useState(false);
+  const [error, setError] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -33,7 +34,8 @@ export const AddPost = () => {
         setTitle('');
         setDescription('');
         setTimeout(() => navigate('/'), 1000);
-      });
+      })
+      .catch((error) => setError(error));
   };
 
   return (
