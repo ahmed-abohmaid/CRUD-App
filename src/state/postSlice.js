@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchPosts, deletePost, addPost, fetchPost } from './data';
+import { fetchPosts, deletePost, addPost, fetchPost, editPost } from './data';
 import { toast } from 'react-toastify';
 
 const initialState = {
@@ -74,6 +74,22 @@ const postSlice = createSlice({
       toast.success('Post has been deleted successfully');
     });
     builder.addCase(deletePost.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+      toast.error(`Sorry, ${action.payload}`);
+    });
+
+    /* Edit Post */
+    builder.addCase(editPost.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(editPost.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.record = action.payload;
+      toast.success('Post has been updated successfully');
+    });
+    builder.addCase(editPost.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
       toast.error(`Sorry, ${action.payload}`);

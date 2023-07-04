@@ -6,7 +6,6 @@ export const PostDetails = () => {
   const { isLoading, error, record } = usePostDetails();
 
   return (
-    <div>
       <Loading isLoading={isLoading} error={error}>
         <div className="flex justify-between items-center mb-4">
           <p className="text-2xl">
@@ -23,6 +22,5 @@ export const PostDetails = () => {
           <p className="pl-3">{record?.description}</p>
         </div>
       </Loading>
-    </div>
   );
 };

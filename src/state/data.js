@@ -63,3 +63,22 @@ export const addPost = createAsyncThunk(
     }
   }
 );
+
+export const editPost = createAsyncThunk(
+  'posts/editPost',
+  async (postDetails, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+
+    try {
+      const res = await fetch(`http://localhost:5000/posts/${postDetails.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(postDetails),
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      });
+      const data = res.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
