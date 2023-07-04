@@ -3,7 +3,7 @@ import usePostDetails from '../hooks/use-post-details';
 import { Loading } from '../components/Loading';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { editPost } from '../state/data';
+import { editPost } from '../store/data';
 import { Form } from '../components/Form';
 
 export const EditPost = () => {
@@ -19,11 +19,11 @@ export const EditPost = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (record && !title && !description) {
-      setTitle(record.title);
-      setDescription(record.description);
+    if (record) {
+      setTitle(record?.title);
+      setDescription(record?.description);
     }
-  }, [record, description, title]);
+  }, [record]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
