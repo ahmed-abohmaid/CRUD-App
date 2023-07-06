@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts } from '../store/data';
 import styles from '../components/global.module.css';
 import { PostsListTable } from '../components/TableElements/PostsListTable';
+import { clearRecords } from '../store/postSlice';
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,9 @@ export const Home = () => {
 
   useEffect(() => {
     dispatch(fetchPosts());
+    return () => {
+      dispatch(clearRecords())
+    }
   }, [dispatch]);
 
   return isLoading ? (

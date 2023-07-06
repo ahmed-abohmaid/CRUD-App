@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { editPost } from '../store/data';
 import { Form } from '../components/Form';
+import { clearRecord } from '../store/postSlice';
 
 export const EditPost = () => {
   const { isLoading, error, record } = usePostDetails();
@@ -18,12 +19,20 @@ export const EditPost = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  /* Three steps: 1) render [] => 2) pending [record] =>  3) fulfilled [record] */
+
   useEffect(() => {
     if (record) {
       setTitle(record?.title);
       setDescription(record?.description);
     }
   }, [record]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearRecord());
+    };
+  }, [dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

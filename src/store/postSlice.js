@@ -12,13 +12,19 @@ const initialState = {
 const postSlice = createSlice({
   name: 'posts',
   initialState,
-  reducers: {},
+  reducers: {
+    clearRecords: (state) => {
+      state.records = [];
+    },
+    clearRecord: (state) => {
+      state.record = null;
+    },
+  },
   extraReducers: (builder) => {
     /* Fetch Posts */
     builder.addCase(fetchPosts.pending, (state) => {
       state.isLoading = true;
       state.error = null;
-      state.records = [];
     });
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
       state.isLoading = false;
@@ -97,4 +103,5 @@ const postSlice = createSlice({
   },
 });
 
+export const { clearRecords, clearRecord } = postSlice.actions;
 export default postSlice.reducer;

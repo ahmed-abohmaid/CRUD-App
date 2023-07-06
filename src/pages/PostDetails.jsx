@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import usePostDetails from '../hooks/use-post-details';
 import { Loading } from '../components/Loading';
+import { clearRecord } from '../store/postSlice';
+import { useDispatch } from 'react-redux';
 
 export const PostDetails = () => {
   const { isLoading, error, record } = usePostDetails();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearRecord());
+    };
+  }, [dispatch]);
 
   return (
       <Loading isLoading={isLoading} error={error}>
