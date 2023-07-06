@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPost } from '../state/data';
+import { addPost } from '../store/data';
 import { useNavigate } from 'react-router-dom';
 import { Form } from '../components/Form';
 

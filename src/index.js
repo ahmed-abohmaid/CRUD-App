@@ -8,7 +8,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './state';
+import store from './store';
 import { Home } from './pages/Home';
 import { RootLayout } from './pages/RootLayout';
 import { PostDetails } from './pages/PostDetails';

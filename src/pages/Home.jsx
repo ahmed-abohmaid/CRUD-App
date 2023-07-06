@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts } from '../state/data';
+import { fetchPosts } from '../store/data';
 import styles from '../components/global.module.css';
 import { PostsListTable } from '../components/TableElements/PostsListTable';
 
