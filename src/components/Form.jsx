@@ -2,16 +2,15 @@ import React from 'react';
 
 export const Form = ({
   handleSubmit,
-  setIsTitleEmpty,
-  isTitleEmpty,
-  setIsDescriptionEmpty,
-  isdescriptionEmpty,
+  setTitleError,
+  titleError,
+  setDescriptionError,
+  descriptionError,
   title,
   description,
   setTitle,
   setDescription,
   isLoading,
-  isError,
 }) => {
 
   return (
@@ -27,15 +26,15 @@ export const Form = ({
           value={title}
           onChange={(e) => {
             setTitle(e.target.value);
-            setIsTitleEmpty(false);
+            setTitleError(null);
           }}
           className={`outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-black/40 placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in ${
-            isTitleEmpty && 'border-red-500 placeholder:text-red-500'
+            titleError && 'border-red-500 placeholder:text-red-500 focus:border-red-500'
           }`}
         />
-        {isTitleEmpty && (
+        {titleError && (
           <p className="text-red-500 mt-[3px] pl-[5px] text-sm mb-0">
-            This field is required.
+            {titleError}
           </p>
         )}
       </div>
@@ -50,15 +49,15 @@ export const Form = ({
           value={description}
           onChange={(e) => {
             setDescription(e.target.value);
-            setIsDescriptionEmpty(false);
+            setDescriptionError(null);
           }}
           className={`outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-black/40 placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in ${
-            isdescriptionEmpty && 'border-red-500 placeholder:text-red-500'
+            descriptionError && 'border-red-500 placeholder:text-red-500 focus:border-red-500'
           }`}
         />
-        {isdescriptionEmpty && (
+        {descriptionError && (
           <p className="text-red-500 mt-[3px] pl-[5px] text-sm mb-0">
-            This field is required.
+            {descriptionError}
           </p>
         )}
       </div>
@@ -69,9 +68,6 @@ export const Form = ({
       >
         {isLoading ? 'Loading' : 'Submit'}
       </button>
-      {isError && (
-        <p className="text-red-500 mt-2">{isError}, please try again.</p>
-      )}
     </form>
   );
 };

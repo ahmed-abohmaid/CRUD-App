@@ -21,7 +21,7 @@ const ConfirmDelete = ({ post, setPopup }) => {
         </p>
         <div className="flex items-center gap-2 mt-5 justify-end">
           <button
-            className="px-2 py-[1px] hover:bg-gray-500 duration-100 ease-in bg-gray-400 rounded-md text-white"
+            className="px-2 py-[1px] hover:bg-gray-400 duration-100 ease-in bg-gray-500 rounded-md text-white"
             onClick={() => setPopup(false)}
           >
             Cancle
