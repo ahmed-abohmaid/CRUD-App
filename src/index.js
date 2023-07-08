@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import styles from './components/global.module.css';
 
 import {
   createBrowserRouter,
@@ -11,10 +12,11 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { Home } from './pages/Home';
 import { RootLayout } from './pages/RootLayout';
-import { PostDetails } from './pages/PostDetails';
-import EditPost from './pages/EditPost';
-import AddPost from './pages/AddPost';
 import { ErrorPage } from './pages/ErrorPage';
+
+const AddPost = React.lazy(() => import('./pages/AddPost'));
+const EditPost = React.lazy(() => import('./pages/EditPost'));
+const PostDetails = React.lazy(() => import('./pages/PostDetails'));
 
 const postParamHandler = ({ params }) => {
   if (isNaN(params.id)) {
@@ -35,16 +37,49 @@ const router = createBrowserRouter([
       { path: 'post', element: <Home /> },
       {
         path: 'post/:id/details',
-        element: <PostDetails />,
+        element: (
+          <Suspense
+            fallback={
+              <div className="mx-auto flex justify-center mt-6 overflow-y-hidden">
+                <span className={`${styles.loader}`}></span>
+              </div>
+            }
+          >
+            <PostDetails />
+          </Suspense>
+        ),
         loader: postParamHandler,
       },
       { path: 'post/:id', element: <Navigate replace to="details" /> },
       {
         path: 'post/:id/edit',
-        element: <EditPost />,
+        element: (
+          <Suspense
+            fallback={
+              <div className="mx-auto flex justify-center mt-6 overflow-y-hidden">
+                <span className={`${styles.loader}`}></span>
+              </div>
+            }
+          >
+            <EditPost />
+          </Suspense>
+        ),
         loader: postParamHandler,
       },
-      { path: 'post/add', element: <AddPost /> },
+      {
+        path: 'post/add',
+        element: (
+          <Suspense
+            fallback={
+              <div className="mx-auto flex justify-center mt-6 overflow-y-hidden">
+                <span className={`${styles.loader}`}></span>
+              </div>
+            }
+          >
+            <AddPost />
+          </Suspense>
+        ),
+      },
     ],
   },
 ]);
