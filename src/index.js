@@ -12,7 +12,7 @@ import store from './store';
 import { Home } from './pages/Home';
 import { RootLayout } from './pages/RootLayout';
 import { PostDetails } from './pages/PostDetails';
-import { EditPost } from './pages/EditPost';
+import EditPost from './pages/EditPost';
 import AddPost from './pages/AddPost';
 import { ErrorPage } from './pages/ErrorPage';
 

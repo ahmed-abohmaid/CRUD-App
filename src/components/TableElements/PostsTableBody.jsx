@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import ConfirmDelete from './ConfirmDelete';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export const PostsTableBody = ({ post, index }) => {
   let [Popup, setPopup] = useState(false);
+  const { isLoggedIn } = useSelector((state) => state.authReducer);
 
   const navigate = useNavigate();
 
@@ -31,8 +33,9 @@ export const PostsTableBody = ({ post, index }) => {
               Edit
             </button>
             <button
-              className="px-2 py-[1px] hover:bg-red-500 duration-100 ease-in bg-red-600 rounded-md text-white"
+              className="px-2 py-[1px] hover:bg-red-500 duration-100 ease-in bg-red-600 rounded-md text-white disabled:bg-red-400"
               onClick={() => setPopup(true)}
+              disabled={!isLoggedIn}
             >
               Delete
             </button>

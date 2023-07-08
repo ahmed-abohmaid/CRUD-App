@@ -6,8 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import { editPost } from '../store/data';
 import { Form } from '../components/Form';
 import { clearRecord } from '../store/postSlice';
+import withGuard from '../utils/withGuard';
 
-export const EditPost = () => {
+ const EditPost = () => {
   const { isLoading, error, record } = usePostDetails();
 
   const [title, setTitle] = useState('');
@@ -93,3 +94,5 @@ export const EditPost = () => {
     </Loading>
   );
 };
+
+export default withGuard(EditPost);
