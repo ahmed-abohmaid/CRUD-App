@@ -4,8 +4,10 @@ import { addPost } from '../store/data';
 import { useNavigate } from 'react-router-dom';
 import { Form } from '../components/Form';
 import { clearRecords } from '../store/postSlice';
+import withGuard from '../utils/withGuard';
 
-export const AddPost = () => {
+
+const AddPost = () => {
   const { isLoading } = useSelector((state) => state.postReducer);
 
   const [title, setTitle] = useState('');
@@ -22,8 +24,8 @@ export const AddPost = () => {
 
     // For error handling
     if (!title && !description) {
-      setTitleError("This field is required.");
-      setDescriptionError("This field is required.");
+      setTitleError('This field is required.');
+      setDescriptionError('This field is required.');
       setTimeout(() => {
         setTitleError(null);
         setDescriptionError(null);
@@ -31,14 +33,14 @@ export const AddPost = () => {
       return;
     }
     if (!title) {
-      setTitleError("This field is required.");
+      setTitleError('This field is required.');
       setTimeout(() => {
         setTitleError(null);
       }, 6000);
       return;
     }
     if (!description) {
-      setDescriptionError("This field is required.");
+      setDescriptionError('This field is required.');
       setTimeout(() => {
         setDescriptionError(null);
       }, 6000);
@@ -51,7 +53,7 @@ export const AddPost = () => {
         setTitle('');
         setDescription('');
         setTimeout(() => navigate('/'), 1000);
-      })
+      });
   };
 
   useEffect(() => {
@@ -75,3 +77,5 @@ export const AddPost = () => {
     />
   );
 };
+
+export default withGuard(AddPost);
