@@ -7,7 +7,9 @@ const activeClass = 'underline text-blue-500 duration-100 ease';
 const Header = () => {
   return (
     <div className="mb-6 mt-4">
-      <h1 className="my-4">CRUD APP</h1>
+      <h1 className="my-4 font-bold text-3xl uppercase tracking-wide">
+        crud app
+      </h1>
       <ul className=" bg-black h-[50px] list-none flex items-center px-1 rounded-sm">
         <li className="ml-[10px] mr-[10px]">
           <NavLink
