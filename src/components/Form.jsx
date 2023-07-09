@@ -1,20 +1,8 @@
 import React from 'react';
 
-export const Form = ({
-  handleSubmit,
-  setTitleError,
-  titleError,
-  setDescriptionError,
-  descriptionError,
-  title,
-  description,
-  setTitle,
-  setDescription,
-  isLoading,
-}) => {
-
+export const Form = ({ formik, isLoading }) => {
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={formik.handleSubmit}>
       <div className="flex flex-col mb-2">
         <label htmlFor="title" className="text-md mb-1">
           Title:
@@ -23,18 +11,17 @@ export const Form = ({
           type="text"
           placeholder="Post title"
           id="title"
-          value={title}
-          onChange={(e) => {
-            setTitle(e.target.value);
-            setTitleError(null);
-          }}
+          onChange={formik.handleChange}
+          value={formik.values.title}
           className={`outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-black/40 placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in ${
-            titleError && 'border-red-500 placeholder:text-red-500 focus:border-red-500'
+            formik.errors.title &&
+            formik.touched.title &&
+            'border-red-500 placeholder:text-red-500 focus:border-red-500'
           }`}
         />
-        {titleError && (
+        {formik.errors.title && formik.touched.title && (
           <p className="text-red-500 mt-[3px] pl-[5px] text-sm mb-0">
-            {titleError}
+            {formik.errors.title}
           </p>
         )}
       </div>
@@ -46,18 +33,17 @@ export const Form = ({
           type="text"
           placeholder="Add your description here"
           id="description"
-          value={description}
-          onChange={(e) => {
-            setDescription(e.target.value);
-            setDescriptionError(null);
-          }}
+          onChange={formik.handleChange}
+          value={formik.values.description}
           className={`outline-none border-2 rounded-md border-black/20 py-1 pl-3 transition-all duration-300 ease-linear focus:border-black/40 placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in ${
-            descriptionError && 'border-red-500 placeholder:text-red-500 focus:border-red-500'
+            formik.errors.description &&
+            formik.touched.description &&
+            'border-red-500 placeholder:text-red-500 focus:border-red-500'
           }`}
         />
-        {descriptionError && (
+        {formik.errors.description && formik.touched.description && (
           <p className="text-red-500 mt-[3px] pl-[5px] text-sm mb-0">
-            {descriptionError}
+            {formik.errors.description}
           </p>
         )}
       </div>
