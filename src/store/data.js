@@ -5,7 +5,7 @@ export const fetchPosts = createAsyncThunk(
   async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await fetch('http://localhost:5000/posts');
+      const res = await fetch('https://crud-server-e63r.onrender.com/posts');
       const data = await res.json();
       return data;
     } catch (error) {
@@ -19,7 +19,9 @@ export const fetchPost = createAsyncThunk(
   async (id, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await fetch(`http://localhost:5000/posts/${id}`);
+      const res = await fetch(
+        `https://crud-server-e63r.onrender.com/posts/${id}`
+      );
       const data = await res.json();
       return data;
     } catch (error) {
@@ -33,7 +35,7 @@ export const deletePost = createAsyncThunk(
   async (id, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      await fetch(`http://localhost:5000/posts/${id}`, {
+      await fetch(`https://crud-server-e63r.onrender.com/posts/${id}`, {
         method: 'DELETE',
       });
       return id;
@@ -51,7 +53,7 @@ export const addPost = createAsyncThunk(
     postDetails.user = authReducer.id;
 
     try {
-      const res = await fetch('http://localhost:5000/posts', {
+      const res = await fetch('https://crud-server-e63r.onrender.com/posts', {
         method: 'POST',
         body: JSON.stringify(postDetails),
         headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -70,11 +72,14 @@ export const editPost = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
 
     try {
-      const res = await fetch(`http://localhost:5000/posts/${postDetails.id}`, {
-        method: 'PATCH',
-        body: JSON.stringify(postDetails),
-        headers: { 'Content-type': 'application/json; charset=UTF-8' },
-      });
+      const res = await fetch(
+        `https://crud-server-e63r.onrender.com/posts/${postDetails.id}`,
+        {
+          method: 'PATCH',
+          body: JSON.stringify(postDetails),
+          headers: { 'Content-type': 'application/json; charset=UTF-8' },
+        }
+      );
       const data = res.json();
       return data;
     } catch (error) {
