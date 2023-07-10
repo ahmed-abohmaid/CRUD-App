@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { PostsListTable } from '../components/TableElements/PostsListTable';
 import { useDispatch, useSelector } from 'react-redux';
 import { Loading } from '../components/Loading';
-import { clearRecords, clearSearchTerm } from '../store/postSlice';
+import { clearRecords } from '../store/postSlice';
 import { fetchPosts, searchPosts } from '../store/data';
 
 const Search = () => {
@@ -25,7 +25,6 @@ const Search = () => {
 
     return () => {
       dispatch(clearRecords());
-      dispatch(clearSearchTerm());
     };
   }, [dispatch, searchTerm]);
 
