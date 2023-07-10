@@ -14,6 +14,22 @@ export const fetchPosts = createAsyncThunk(
   }
 );
 
+export const searchPosts = createAsyncThunk(
+  'posts/searchPosts',
+  async (query, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await fetch(
+        `https://crud-server-e63r.onrender.com/posts?q=${query}`
+      );
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const fetchPost = createAsyncThunk(
   'posts/fetchPost',
   async (id, thunkAPI) => {

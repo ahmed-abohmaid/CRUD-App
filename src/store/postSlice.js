@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchPosts, deletePost, addPost, fetchPost, editPost } from './data';
+import {
+  fetchPosts,
+  deletePost,
+  addPost,
+  fetchPost,
+  editPost,
+  searchPosts,
+} from './data';
 import { toast } from 'react-toastify';
 
 const initialState = {
@@ -7,6 +14,7 @@ const initialState = {
   isLoading: false,
   error: null,
   record: null,
+  searchTerm: '',
 };
 
 const postSlice = createSlice({
@@ -18,6 +26,9 @@ const postSlice = createSlice({
     },
     clearRecord: (state) => {
       state.record = null;
+    },
+    setSearchTerm: (state, action) => {
+      state.searchTerm = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -31,6 +42,21 @@ const postSlice = createSlice({
       state.records.push(...action.payload);
     });
     builder.addCase(fetchPosts.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+      toast.error(`Sorry, ${action.payload}`);
+    });
+
+    /* Search Posts */
+    builder.addCase(searchPosts.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(searchPosts.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.records = action.payload;
+    });
+    builder.addCase(searchPosts.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
       toast.error(`Sorry, ${action.payload}`);
@@ -103,5 +129,5 @@ const postSlice = createSlice({
   },
 });
 
-export const { clearRecords, clearRecord } = postSlice.actions;
+export const { clearRecords, clearRecord, setSearchTerm } = postSlice.actions;
 export default postSlice.reducer;

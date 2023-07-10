@@ -1,10 +1,17 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { IoMdSearch } from 'react-icons/io';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearchTerm } from '../store/postSlice';
 
 const nonActiveClass = 'text-white no-underline duration-100 ease';
 const activeClass = 'underline text-blue-500 duration-100 ease';
 
 const Header = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { searchTerm } = useSelector((state) => state.postReducer);
+
   return (
     <div className="mb-6 mt-4">
       <h1 className="my-4 font-bold text-3xl uppercase tracking-wide">
@@ -31,6 +38,22 @@ const Header = () => {
           >
             Add Post
           </NavLink>
+        </li>
+        <li className="ml-auto relative">
+          <IoMdSearch
+            fontSize={20}
+            className="text-balck absolute top-1/2 transform -translate-y-1/2 left-1 text-lg"
+          />
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) =>
+              dispatch(setSearchTerm(e.target.value.toLowerCase()))
+            }
+            onFocus={() => navigate('/posts/search')}
+            placeholder="Search"
+            className="bg-white outline-none text-black text-sm px-2 pl-6 py-1 w-[350px] rounded-full placeholder:text-black placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+          />
         </li>
         <li className="ml-auto mr-[10px] text-white">login</li>
       </ul>
