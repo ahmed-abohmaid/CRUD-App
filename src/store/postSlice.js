@@ -30,6 +30,9 @@ const postSlice = createSlice({
     setSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
     },
+    clearSearchTerm: (state) => {
+      state.searchTerm = '';
+    },
   },
   extraReducers: (builder) => {
     /* Fetch Posts */
@@ -129,5 +132,5 @@ const postSlice = createSlice({
   },
 });
 
-export const { clearRecords, clearRecord, setSearchTerm } = postSlice.actions;
+export const { clearRecords, clearRecord, setSearchTerm, clearSearchTerm } = postSlice.actions;
 export default postSlice.reducer;
