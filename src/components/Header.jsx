@@ -55,7 +55,15 @@ const Header = () => {
             className="bg-white outline-none text-black text-sm px-2 pl-6 py-1 w-[350px] rounded-full placeholder:text-black placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
           />
         </li>
-        <li className="ml-auto mr-[10px] text-white">login</li>
+        <li className="ml-auto mr-[10px] text-white">
+        <NavLink
+            to="/login"
+            className={({ isActive }) =>
+              isActive ? activeClass : nonActiveClass
+            }
+          >
+            LogIn / SignUp
+          </NavLink></li>
       </ul>
     </div>
   );
