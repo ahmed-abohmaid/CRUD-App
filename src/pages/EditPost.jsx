@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { editPost } from '../store/data';
 import { Form } from '../components/Form';
-import { clearRecord } from '../store/postSlice';
+import { clearRecord, clearRecords } from '../store/postSlice';
 import withGuard from '../utils/withGuard';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -66,6 +66,7 @@ const EditPost = () => {
   useEffect(() => {
     return () => {
       dispatch(clearRecord());
+      dispatch(clearRecords());
     };
   }, [dispatch]);
 
