@@ -30,7 +30,7 @@ const postParamHandler = ({ params }) => {
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/*',
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
