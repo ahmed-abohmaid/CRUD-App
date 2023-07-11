@@ -38,6 +38,10 @@ const Login = () => {
           } else {
             toast.success(`Welcome, ${data.name}`);
             dispatch(setIsLoggedIn(true));
+            localStorage.setItem(
+              'user',
+              JSON.stringify({ name: data.name, mail: data.mail })
+            );
             setTimeout(() => navigate('/'), 500);
           }
         });

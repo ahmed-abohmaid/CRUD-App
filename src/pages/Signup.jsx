@@ -58,6 +58,10 @@ const Signup = () => {
           .unwrap()
           .then(() => {
             dispatch(setIsLoggedIn(true));
+            localStorage.setItem(
+              'user',
+              JSON.stringify({ name: values.name, mail: values.mail })
+            );
             setTimeout(() => navigate('/'), 500);
           })
           .catch(() => dispatch(setIsLoggedIn(false)));

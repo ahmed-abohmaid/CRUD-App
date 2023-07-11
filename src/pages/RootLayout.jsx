@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { getLocalUser } from '../utils/getLocalUSer';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../store/authSlice';
 
 export const RootLayout = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const user = getLocalUser();
+    if (user) {
+      dispatch(setUser(user));
+    }
+  }, [dispatch]);
+
   return (
     <>
       {/* For toasting messages */}
