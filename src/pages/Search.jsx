@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { PostsListTable } from '../components/TableElements/PostsListTable';
+import { PostsListTable } from '../components/TableComponents/PostsListTable';
 import { useDispatch, useSelector } from 'react-redux';
 import { Loading } from '../components/Loading';
 import { clearRecords } from '../store/postSlice';
-import { fetchPosts, searchPosts } from '../store/data';
+import { fetchPosts, searchPosts } from '../store/postsData';
 
 const Search = () => {
   const dispatch = useDispatch();

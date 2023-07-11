@@ -3,8 +3,8 @@ import usePostDetails from '../hooks/use-post-details';
 import { Loading } from '../components/Loading';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { editPost } from '../store/data';
-import { Form } from '../components/Form';
+import { editPost } from '../store/postsData';
+import { PostsForm } from '../components/PostsForm';
 import { clearRecord, clearRecords } from '../store/postSlice';
 import withGuard from '../utils/withGuard';
 import { useFormik } from 'formik';
@@ -72,7 +72,7 @@ const EditPost = () => {
 
   return (
     <Loading isLoading={isLoading} error={error}>
-      <Form formik={formik} isLoading={isLoading} />
+      <PostsForm formik={formik} isLoading={isLoading} />
     </Loading>
   );
 };

@@ -11,6 +11,7 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { searchTerm } = useSelector((state) => state.postReducer);
+  const { user, isLoggedIn } = useSelector((state) => state.authReducer);
 
   return (
     <div className="mb-6 mt-4">
@@ -55,15 +56,21 @@ const Header = () => {
             className="bg-white outline-none text-black text-sm px-2 pl-6 py-1 w-[350px] rounded-full placeholder:text-black placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
           />
         </li>
-        <li className="ml-auto mr-[10px] text-white">
-        <NavLink
-            to="/login"
-            className={({ isActive }) =>
-              isActive ? activeClass : nonActiveClass
-            }
-          >
-            LogIn / SignUp
-          </NavLink></li>
+
+        <li className="ml-auto mr-[10px] text-white capitalize">
+          {isLoggedIn ? (
+            user.name
+          ) : (
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive ? activeClass : nonActiveClass
+              }
+            >
+              Login
+            </NavLink>
+          )}
+        </li>
       </ul>
     </div>
   );

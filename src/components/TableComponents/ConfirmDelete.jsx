@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deletePost } from '../../store/data';
+import { deletePost } from '../../store/postsData';
 import { motion } from 'framer-motion';
 
 const ConfirmDelete = ({ post, setPopup }) => {

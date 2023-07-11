@@ -13,12 +13,14 @@ import store from './store';
 import { Home } from './pages/Home';
 import { RootLayout } from './pages/RootLayout';
 import { ErrorPage } from './pages/ErrorPage';
+import { getLocalUser } from './utils/getLocalUSer';
 
 const AddPost = React.lazy(() => import('./pages/AddPost'));
 const EditPost = React.lazy(() => import('./pages/EditPost'));
 const PostDetails = React.lazy(() => import('./pages/PostDetails'));
 const Search = React.lazy(() => import('./pages/Search'));
-const LogIn = React.lazy(() => import('./pages/LogIn'));
+const Login = React.lazy(() => import('./pages/login'));
+const Signup = React.lazy(() => import('./pages/Signup'));
 
 const postParamHandler = ({ params }) => {
   if (isNaN(params.id)) {
@@ -29,9 +31,20 @@ const postParamHandler = ({ params }) => {
   }
 };
 
+const isLoggedIn = () => {
+  const user = getLocalUser();
+
+  if (user) {
+    throw new Response('Bad Request', {
+      statusText: "You can't login again!",
+      status: 400,
+    }); // To make it go to error page (from documentation)
+  }
+};
+
 const router = createBrowserRouter([
   {
-    path: '/*',
+    path: '/',
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
@@ -106,9 +119,25 @@ const router = createBrowserRouter([
               </div>
             }
           >
-            <LogIn />
+            <Login />
           </Suspense>
         ),
+        loader: isLoggedIn,
+      },
+      {
+        path: 'signup',
+        element: (
+          <Suspense
+            fallback={
+              <div className="mx-auto flex justify-center mt-6 overflow-y-hidden">
+                <span className={`${styles.loader}`}></span>
+              </div>
+            }
+          >
+            <Signup />
+          </Suspense>
+        ),
+        loader: isLoggedIn,
       },
     ],
   },

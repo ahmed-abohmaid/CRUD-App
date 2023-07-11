@@ -6,7 +6,7 @@ import {
   fetchPost,
   editPost,
   searchPosts,
-} from './data';
+} from './postsData';
 import { toast } from 'react-toastify';
 
 const initialState = {
