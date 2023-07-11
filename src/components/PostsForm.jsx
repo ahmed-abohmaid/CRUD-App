@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Form = ({ formik, isLoading }) => {
+export const PostsForm = ({ formik, isLoading }) => {
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="flex flex-col mb-2">
@@ -52,7 +52,7 @@ export const Form = ({ formik, isLoading }) => {
         type="submit"
         disabled={isLoading}
       >
-        {isLoading ? 'Loading' : 'Submit'}
+        {isLoading ? 'Loading...' : 'Submit'}
       </button>
     </form>
   );

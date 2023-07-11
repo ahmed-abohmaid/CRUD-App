@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts } from '../store/data';
+import { fetchPosts } from '../store/postsData';
 import styles from '../components/global.module.css';
-import { PostsListTable } from '../components/TableElements/PostsListTable';
+import { PostsListTable } from '../components/TableComponents/PostsListTable';
 import { clearRecords } from '../store/postSlice';
 
 export const Home = () => {

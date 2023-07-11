@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPost } from '../store/data';
+import { addPost } from '../store/postsData';
 import { useNavigate } from 'react-router-dom';
-import { Form } from '../components/Form';
+import { PostsForm } from '../components/PostsForm';
 import { clearRecords } from '../store/postSlice';
 import withGuard from '../utils/withGuard';
 import { useFormik } from 'formik';
@@ -48,7 +48,7 @@ const AddPost = () => {
     };
   }, [dispatch]);
 
-  return <Form formik={formik} isLoading={isLoading} />;
+  return <PostsForm formik={formik} isLoading={isLoading} />;
 };
 
 export default withGuard(AddPost);

@@ -24,7 +24,7 @@ const PostDetails = () => {
         </p>
         <p>
           <span className="text-blue-500 text-xl">User: </span>
-          <span className="text-lg">{record?.userName}</span>
+          <span className="text-lg">{record?.user}</span>
         </p>
         <p>
           <span className="text-blue-500 text-xl">ID: </span>

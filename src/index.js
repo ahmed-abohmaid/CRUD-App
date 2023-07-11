@@ -18,7 +18,8 @@ const AddPost = React.lazy(() => import('./pages/AddPost'));
 const EditPost = React.lazy(() => import('./pages/EditPost'));
 const PostDetails = React.lazy(() => import('./pages/PostDetails'));
 const Search = React.lazy(() => import('./pages/Search'));
-const LogIn = React.lazy(() => import('./pages/LogIn'));
+const Login = React.lazy(() => import('./pages/Login'));
+const Signup = React.lazy(() => import('./pages/Signup'));
 
 const postParamHandler = ({ params }) => {
   if (isNaN(params.id)) {
@@ -106,7 +107,21 @@ const router = createBrowserRouter([
               </div>
             }
           >
-            <LogIn />
+            <Login />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'signup',
+        element: (
+          <Suspense
+            fallback={
+              <div className="mx-auto flex justify-center mt-6 overflow-y-hidden">
+                <span className={`${styles.loader}`}></span>
+              </div>
+            }
+          >
+            <Signup />
           </Suspense>
         ),
       },
