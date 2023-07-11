@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { addUser } from '../store/usersData';
+import { addUser, fetchUser } from '../store/usersData';
 import { setIsLoggedIn } from '../store/authSlice';
 
 const formSchema = Yup.object().shape({
@@ -43,20 +43,30 @@ const Signup = () => {
       password: '',
     },
     validationSchema: formSchema,
-    onSubmit: (values) => {
-      dispatch(
-        addUser({
-          name: values.name,
-          mail: values.mail,
-          password: values.password,
-        })
-      )
-        .unwrap()
-        .then(() => {
-          dispatch(setIsLoggedIn(true));
-          setTimeout(() => navigate('/'), 500);
-        })
-        .catch(() => dispatch(setIsLoggedIn(false)));
+    onSubmit: (values, { setFieldError }) => {
+      // Check if user is already exist
+      const isUserExist = fetchUser(values.mail);
+
+      if (!isUserExist) {
+        dispatch(
+          addUser({
+            name: values.name,
+            mail: values.mail,
+            password: values.password,
+          })
+        )
+          .unwrap()
+          .then(() => {
+            dispatch(setIsLoggedIn(true));
+            setTimeout(() => navigate('/'), 500);
+          })
+          .catch(() => dispatch(setIsLoggedIn(false)));
+      } else {
+        setFieldError(
+          'mail',
+          'This user is already exist, try different Email.'
+        );
+      }
     },
   });
   return <SignupForm formik={formik} isLoading={isLoading} />;

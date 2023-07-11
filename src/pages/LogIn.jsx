@@ -25,18 +25,18 @@ const Login = () => {
       password: '',
     },
     validationSchema: formSchema,
-    onSubmit: (values) => {
+    onSubmit: (values, { setFieldError }) => {
       dispatch(fetchUser(values.mail))
         .unwrap()
         .then((data) => {
-          if (data.length === 0) {
-            toast.error('Please Enter Valid Email');
+          if (!data) {
+            setFieldError('mail', 'Please, Check Your Email And Try Again');
             dispatch(setIsLoggedIn(false));
-          } else if (data[0].password !== values.password) {
-            toast.error('Please Enter the correct password');
+          } else if (data.password !== values.password) {
+            setFieldError('password', 'Please Enter The Correct Password');
             dispatch(setIsLoggedIn(false));
           } else {
-            toast.success(`Welcome, ${data[0].name}`);
+            toast.success(`Welcome, ${data.name}`);
             dispatch(setIsLoggedIn(true));
             setTimeout(() => navigate('/'), 500);
           }

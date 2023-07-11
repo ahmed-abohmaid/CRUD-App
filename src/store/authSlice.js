@@ -40,7 +40,7 @@ const authSlice = createSlice({
     });
     builder.addCase(fetchUser.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.user = action.payload[0];
+      state.user = action.payload;
     });
     builder.addCase(fetchUser.rejected, (state, action) => {
       state.isLoading = false;

@@ -28,7 +28,7 @@ export const fetchUser = createAsyncThunk(
         `https://crud-server-e63r.onrender.com/users?q=${mail}`
       );
       const data = await res.json();
-      return data;
+      return data[0];
     } catch (error) {
       return rejectWithValue(error.message);
     }
