@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { addUser, fetchUser } from '../store/usersData';
+import { addUser } from '../store/usersData';
 import { setIsLoggedIn } from '../store/authSlice';
+import { fetchUsers } from '../utils/fetchUsers';
+import { toast } from 'react-toastify';
 
 const formSchema = Yup.object().shape({
   name: Yup.string()
@@ -45,32 +47,39 @@ const Signup = () => {
     validationSchema: formSchema,
     onSubmit: (values, { setFieldError }) => {
       // Check if user is already exist
-      const isUserExist = fetchUser(values.mail);
-
-      if (!isUserExist) {
-        dispatch(
-          addUser({
-            name: values.name,
-            mail: values.mail,
-            password: values.password,
-          })
-        )
-          .unwrap()
-          .then(() => {
-            dispatch(setIsLoggedIn(true));
-            localStorage.setItem(
-              'user',
-              JSON.stringify({ name: values.name, mail: values.mail })
+      const fetchData = async () => {
+        try {
+          const isUserExist = await fetchUsers(values.mail);
+          console.log(isUserExist);
+          if (isUserExist.length === 0) {
+            dispatch(
+              addUser({
+                name: values.name,
+                mail: values.mail,
+                password: values.password,
+              })
+            )
+              .unwrap()
+              .then(() => {
+                dispatch(setIsLoggedIn(true));
+                localStorage.setItem(
+                  'user',
+                  JSON.stringify({ name: values.name, mail: values.mail })
+                );
+                setTimeout(() => navigate('/'), 500);
+              })
+              .catch(() => dispatch(setIsLoggedIn(false)));
+          } else {
+            setFieldError(
+              'mail',
+              'This user is already exist, try different Email.'
             );
-            setTimeout(() => navigate('/'), 500);
-          })
-          .catch(() => dispatch(setIsLoggedIn(false)));
-      } else {
-        setFieldError(
-          'mail',
-          'This user is already exist, try different Email.'
-        );
-      }
+          }
+        } catch (error) {
+          toast('Error has occurred, please try again');
+        }
+      };
+      fetchData();
     },
   });
   return <SignupForm formik={formik} isLoading={isLoading} />;
