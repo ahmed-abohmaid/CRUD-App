@@ -13,6 +13,7 @@ import store from './store';
 import { Home } from './pages/Home';
 import { RootLayout } from './pages/RootLayout';
 import { ErrorPage } from './pages/ErrorPage';
+import { getLocalUser } from './utils/getLocalUSer';
 
 const AddPost = React.lazy(() => import('./pages/AddPost'));
 const EditPost = React.lazy(() => import('./pages/EditPost'));
@@ -30,9 +31,20 @@ const postParamHandler = ({ params }) => {
   }
 };
 
+const isLoggedIn = () => {
+  const user = getLocalUser();
+
+  if (user) {
+    throw new Response('Bad Request', {
+      statusText: "You can't login again!",
+      status: 400,
+    }); // To make it go to error page (from documentation)
+  }
+};
+
 const router = createBrowserRouter([
   {
-    path: '/*',
+    path: '/',
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
@@ -110,6 +122,7 @@ const router = createBrowserRouter([
             <Login />
           </Suspense>
         ),
+        loader: isLoggedIn,
       },
       {
         path: 'signup',
@@ -124,6 +137,7 @@ const router = createBrowserRouter([
             <Signup />
           </Suspense>
         ),
+        loader: isLoggedIn,
       },
     ],
   },

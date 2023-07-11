@@ -57,7 +57,7 @@ const Header = () => {
           />
         </li>
 
-        <li className="ml-auto mr-[10px] text-white">
+        <li className="ml-auto mr-[10px] text-white capitalize">
           {isLoggedIn ? (
             user.name
           ) : (

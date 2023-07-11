@@ -10,9 +10,9 @@ export const ErrorPage = () => {
     <div className="px-[50px]">
       <Header />
       <div className="text-center mt-5">
-        <h1 className="text-red-500 text-8xl tracking-widest">404</h1>
+        <h1 className="text-red-500 text-8xl tracking-widest">{error.status}</h1>
         <p className="text-xl">
-          <span className="text-blue-400 text-5xl">Oops!</span> an unexpected
+          <span className="text-blue-400 text-5xl">Oops!</span> an
           error has occurred.
         </p>
         <p className="text-lg mt-5">
