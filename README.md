@@ -1,80 +1,95 @@
-# first run ths following command
+# CRUD App Documentation
 
-npm i
+## Introduction
 
-to install all libraries
+This documentation provides an overview of the CRUD (Create, Read, Update, Delete) app developed using React, Redux, and other technologies. The app allows users to perform various operations on posts, such as adding, editing, and deleting posts, as well as viewing post details and utilizing smart search functionality.
 
-# json server
+## Usage
+Live: https://crud-app-abohmaid.onrender.com
 
-for testing please use json server, and create endf point with name posts, and fields will be (id, title, description, user_id)
+- **For Quik Access Login With:**
+  - Email: test@test.com
+  - Password: Test1234$
 
-# Getting Started with Create React App
+## Technologies Used
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The following technologies and libraries were used in the development of this app:
 
-## Available Scripts
+- React
+- Redux
+- React Router v6
+- Tailwind CSS
+- Formik
+- JSON Server
+- React Toastify
+- React Icons
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+The CRUD app includes the following features:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Add post:** Users can add new posts.
+  
+- **Edit post:** Users can edit existing posts.
+  
+- **Delete post:** Users can delete posts.
+  
+- **Go to post details:** Users can view the details of a specific post.
+  
+- **Smart Search functionality:** Allows users to search for posts based on specific criteria.
+  
+- **Login & Signup:** Implements user authentication and registration functionality.
+  
+- **Form handling with Formik:** Utilizes the Formik library for form validation and handling.
+  
+- **Fake API with JSON Server:** Utilizes JSON Server to simulate a backend API and hosts it on a render site.
+  
+- **Error handling for form fields:** Provides error handling for empty fields or fields with excessively long titles during form submission.
+  
+- **Error handling for signup:**
+  - Checks that names are at least one character long.
+    
+  - Validates email format using the pattern example@example.com.
+    
+  - Ensures passwords are at least 8 characters long and contain a combination of uppercase letters, lowercase letters, digits, and special characters.
+    
+  - Prevents duplicate registrations by checking if the user or email already exists during signup.
+    
+- **Error handling for sign-in:**
+  - Redirects users to an error page with React Router v6 if they are already logged in and attempt to access the login page again.
+    
+  - Verifies if the email exists.
+    
+  - Validates the correctness of the password.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## User Authentication and Persistence
 
-### `npm test`
+User authentication and persistence are implemented in the app. User data, including their name and email, is saved in the local storage to keep them signed in across sessions.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Performance Optimization
 
-### `npm run build`
+The project incorporates performance optimization techniques to ensure efficient and smooth operation.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Code Organization and Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The code is structured following clean code practices. The project follows a specific architecture pattern, ensuring organized and maintainable code.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Higher-Order Function (HOF) - withGuard
 
-### `npm run eject`
+The `withGuard` higher-order function is used to check whether a user is logged in or not before granting access to certain features. This function ensures that only logged-in users can add, edit, and delete posts.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Custom Hook - use-post-details
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The `use-post-details` custom hook is created to avoid code repetition. It is used in multiple places within the app to handle post details efficiently.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Bugs and Issue Reporting
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+If you encounter any bugs or issues while using the app, please report them by creating a GitHub issue in the project's repository. Include detailed information about the problem and any relevant error messages.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Resources
+- [Kimz Code Channel](https://www.youtube.com/@kimzcodes)
+- [Formik](https://formik.org/)
+- [Yup](https://github.com/jquense/yup)
+- [Render](https://render.com/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [React Toastify](https://www.npmjs.com/package/react-toastify)
