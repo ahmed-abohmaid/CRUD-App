@@ -66,7 +66,7 @@ export const addPost = createAsyncThunk(
   async (postDetails, thunkAPI) => {
     const { rejectWithValue, getState } = thunkAPI;
     let { authReducer } = getState();
-    postDetails.user = authReducer.id;
+    postDetails.userName = authReducer.userName;
 
     try {
       const res = await fetch('https://crud-server-e63r.onrender.com/posts', {
