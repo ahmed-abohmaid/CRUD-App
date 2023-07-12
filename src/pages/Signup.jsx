@@ -66,6 +66,7 @@ const Signup = () => {
                   'user',
                   JSON.stringify({ name: values.name, mail: values.mail })
                 );
+                toast.success(`Welcome, ${values.name}`)
                 setTimeout(() => navigate('/'), 500);
               })
               .catch(() => dispatch(setIsLoggedIn(false)));
