@@ -13,7 +13,7 @@ const formSchema = Yup.object().shape({
   password: Yup.string().required('This field is required.'),
 });
 
-const Login = () => {
+const LoginPage = () => {
   const { isLoading } = useSelector((state) => state.authReducer);
 
   const dispatch = useDispatch();
@@ -51,4 +51,4 @@ const Login = () => {
   return <LoginForm formik={formik} isLoading={isLoading} />;
 };
 
-export default Login;
+export default LoginPage;

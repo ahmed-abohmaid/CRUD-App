@@ -19,7 +19,7 @@ const AddPost = React.lazy(() => import('./pages/AddPost'));
 const EditPost = React.lazy(() => import('./pages/EditPost'));
 const PostDetails = React.lazy(() => import('./pages/PostDetails'));
 const Search = React.lazy(() => import('./pages/Search'));
-const Login = React.lazy(() => import('./pages/Login'));
+const LoginPage = React.lazy(() => import('./pages/LoginPage'));
 const Signup = React.lazy(() => import('./pages/Signup'));
 
 const postParamHandler = ({ params }) => {
@@ -119,7 +119,7 @@ const router = createBrowserRouter([
               </div>
             }
           >
-            <Login />
+            <LoginPage />
           </Suspense>
         ),
         loader: isLoggedIn,
