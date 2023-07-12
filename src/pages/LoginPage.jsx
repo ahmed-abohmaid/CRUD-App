@@ -32,6 +32,9 @@ const LoginPage = () => {
           if (!data) {
             setFieldError('mail', 'Please, Check Your Email And Try Again');
             dispatch(setIsLoggedIn(false));
+          } else if (data.mail !== values.mail) {
+            setFieldError('mail', 'Please, Check Your Email And Try Again');
+            dispatch(setIsLoggedIn(false));
           } else if (data.password !== values.password) {
             setFieldError('password', 'Please Enter The Correct Password');
             dispatch(setIsLoggedIn(false));
