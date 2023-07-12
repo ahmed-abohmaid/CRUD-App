@@ -50,7 +50,6 @@ const Signup = () => {
       const fetchData = async () => {
         try {
           const isUserExist = await fetchUsers(values.mail);
-          console.log(isUserExist);
           if (isUserExist.length === 0) {
             dispatch(
               addUser({
@@ -66,7 +65,7 @@ const Signup = () => {
                   'user',
                   JSON.stringify({ name: values.name, mail: values.mail })
                 );
-                toast.success(`Welcome, ${values.name}`)
+                toast.success(`Welcome, ${values.name}`);
                 setTimeout(() => navigate('/'), 500);
               })
               .catch(() => dispatch(setIsLoggedIn(false)));
