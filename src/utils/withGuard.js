@@ -11,7 +11,10 @@ const withGuard = (Component) => {
       return <h1>Please, loggin first</h1>;
     }
 
-    if (user.name === record?.user || Component.name === 'AddPost') {
+    if (
+      user.name === record?.user ||
+      window.location.pathname === '/post/add'
+    ) {
       return <Component />;
     } else {
       return (
