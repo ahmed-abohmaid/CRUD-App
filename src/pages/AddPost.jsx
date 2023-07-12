@@ -7,6 +7,7 @@ import { clearRecords } from '../store/postSlice';
 import withGuard from '../utils/withGuard';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { Loading } from '../components/Loading';
 
 const formSchema = Yup.object().shape({
   title: Yup.string()
@@ -17,7 +18,7 @@ const formSchema = Yup.object().shape({
 });
 
 const AddPost = () => {
-  const { isLoading } = useSelector((state) => state.postReducer);
+  const { isLoading, error } = useSelector((state) => state.postReducer);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -48,7 +49,11 @@ const AddPost = () => {
     };
   }, [dispatch]);
 
-  return <PostsForm formik={formik} isLoading={isLoading} />;
+  return (
+    <Loading isLoading={isLoading} error={error}>
+      <PostsForm formik={formik} isLoading={isLoading} />
+    </Loading>
+  );
 };
 
 export default withGuard(AddPost);
