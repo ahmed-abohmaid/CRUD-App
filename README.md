@@ -62,6 +62,12 @@ The CRUD app includes the following features:
     
   - Validates the correctness of the password.
 
+## Higher-Order Function (HOF) - withGuard
+
+The `withGuard` higher-order function is used to check whether a user is logged in or not before granting access to certain features. This function ensures that only logged-in users can add, edit, and delete posts.
+<br><br>
+Also, users can only edit and delete their own posts. This feature ensures that users have control over their own posts and cannot modify or delete posts created by other users.
+
 ## User Authentication and Persistence
 
 User authentication and persistence are implemented in the app. User data, including their name and email, is saved in the local storage to keep them signed in across sessions.
@@ -73,10 +79,6 @@ The project incorporates performance optimization techniques to ensure efficient
 ## Code Organization and Structure
 
 The code is structured following clean code practices. The project follows a specific architecture pattern, ensuring organized and maintainable code.
-
-## Higher-Order Function (HOF) - withGuard
-
-The `withGuard` higher-order function is used to check whether a user is logged in or not before granting access to certain features. This function ensures that only logged-in users can add, edit, and delete posts.
 
 ## Custom Hook - use-post-details
 
