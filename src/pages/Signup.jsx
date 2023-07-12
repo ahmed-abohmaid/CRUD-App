@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { addUser } from '../store/usersData';
 import { setIsLoggedIn } from '../store/authSlice';
-import { fetchUsers } from '../utils/fetchUsers';
+import { fetchUserByEmail } from '../utils/fetchUserByEmail';
 import { toast } from 'react-toastify';
 
 const formSchema = Yup.object().shape({
@@ -49,7 +49,7 @@ const Signup = () => {
       // Check if user is already exist
       const fetchData = async () => {
         try {
-          const isUserExist = await fetchUsers(values.mail);
+          const isUserExist = await fetchUserByEmail(values.mail);
           if (isUserExist.length === 0) {
             dispatch(
               addUser({

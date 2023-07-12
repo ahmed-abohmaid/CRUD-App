@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 
-export const fetchUsers = async (mail) => {
+export const fetchUserByEmail = async (mail) => {
   try {
     const res = await fetch(
       `https://crud-server-e63r.onrender.com/users?q=${mail}`

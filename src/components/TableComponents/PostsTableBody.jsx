@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 export const PostsTableBody = ({ post, index }) => {
-  let [Popup, setPopup] = useState(false);
+  const [popup, setPopup] = useState(false);
   const { isLoggedIn, user } = useSelector((state) => state.authReducer);
 
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ export const PostsTableBody = ({ post, index }) => {
           </div>
         </td>
       </tr>
-      {Popup && <ConfirmDelete post={post} setPopup={setPopup} />}
+      {popup && <ConfirmDelete post={post} setPopup={setPopup} />}
     </>
   );
 };
