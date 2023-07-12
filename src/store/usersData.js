@@ -1,12 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+const API = process.env.REACT_APP_API;
+
 export const addUser = createAsyncThunk(
   'users/addUser',
   async (userDetails, thunkAPI) => {
-    const { rejectWithValue} = thunkAPI;
+    const { rejectWithValue } = thunkAPI;
 
     try {
-      const res = await fetch('https://crud-server-e63r.onrender.com/users', {
+      const res = await fetch(`${API}/users`, {
         method: 'POST',
         body: JSON.stringify(userDetails),
         headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -24,9 +26,7 @@ export const fetchUser = createAsyncThunk(
   async (mail, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await fetch(
-        `https://crud-server-e63r.onrender.com/users?q=${mail}`
-      );
+      const res = await fetch(`${API}/users?q=${mail}`);
       const data = await res.json();
       return data[0];
     } catch (error) {

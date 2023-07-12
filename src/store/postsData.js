@@ -1,11 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+const API = process.env.REACT_APP_API;
+
 export const fetchPosts = createAsyncThunk(
   'posts/fetchPosts',
   async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await fetch('https://crud-server-e63r.onrender.com/posts');
+      const res = await fetch(`${API}/posts`);
       const data = await res.json();
       return data;
     } catch (error) {
@@ -19,9 +21,7 @@ export const searchPosts = createAsyncThunk(
   async (query, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await fetch(
-        `https://crud-server-e63r.onrender.com/posts?q=${query}`
-      );
+      const res = await fetch(`${API}/posts?q=${query}`);
       const data = await res.json();
       return data;
     } catch (error) {
@@ -35,9 +35,7 @@ export const fetchPost = createAsyncThunk(
   async (id, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await fetch(
-        `https://crud-server-e63r.onrender.com/posts/${id}`
-      );
+      const res = await fetch(`${API}/posts/${id}`);
       const data = await res.json();
       return data;
     } catch (error) {
@@ -51,7 +49,7 @@ export const deletePost = createAsyncThunk(
   async (id, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      await fetch(`https://crud-server-e63r.onrender.com/posts/${id}`, {
+      await fetch(`${API}/posts/${id}`, {
         method: 'DELETE',
       });
       return id;
@@ -69,7 +67,7 @@ export const addPost = createAsyncThunk(
     postDetails.user = authReducer.user.name;
 
     try {
-      const res = await fetch('https://crud-server-e63r.onrender.com/posts', {
+      const res = await fetch(`${API}/posts`, {
         method: 'POST',
         body: JSON.stringify(postDetails),
         headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -88,14 +86,11 @@ export const editPost = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
 
     try {
-      const res = await fetch(
-        `https://crud-server-e63r.onrender.com/posts/${postDetails.id}`,
-        {
-          method: 'PATCH',
-          body: JSON.stringify(postDetails),
-          headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        }
-      );
+      const res = await fetch(`${API}/posts/${postDetails.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(postDetails),
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      });
       const data = res.json();
       return data;
     } catch (error) {
