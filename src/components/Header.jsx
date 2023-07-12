@@ -62,7 +62,7 @@ const Header = () => {
         <li className="ml-auto mr-[10px] text-white capitalize">
           {isLoggedIn ? (
             <p className="text-[13px] sm:text-sm">
-              {user.name.slice(0, user.name.indexOf(' '))}
+              {user.name.slice(0, user.name.indexOf(' ') !== -1? user.name.indexOf(' ') : user.name.length)}
             </p>
           ) : (
             <NavLink
