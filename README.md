@@ -80,7 +80,7 @@ The project incorporates performance optimization techniques to ensure efficient
 
 The code is structured following clean code practices. The project follows a specific architecture pattern, ensuring organized and maintainable code.
 
-## Custom Hook - use-post-details
+## Custom Hook - usePostDetails
 
 The `use-post-details` custom hook is created to avoid code repetition. It is used in multiple places within the app to handle post details efficiently.
 
