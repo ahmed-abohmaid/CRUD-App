@@ -31,7 +31,7 @@ export const RootLayout = () => {
         draggable
         pauseOnHover
       />
-      <div className="px-[50px]">
+      <div className="px-2 md:px-[50px]">
         <Header />
         <div className="overflow-x-auto w-[70%] mx-auto">
           <Outlet />

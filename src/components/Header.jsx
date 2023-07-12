@@ -4,8 +4,10 @@ import { IoMdSearch } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchTerm } from '../store/postSlice';
 
-const nonActiveClass = 'text-white no-underline duration-100 ease';
-const activeClass = 'underline text-blue-500 duration-100 ease';
+const nonActiveClass =
+  'text-white no-underline duration-100 ease text-[13px] sm:text-sm';
+const activeClass =
+  'underline text-blue-500 duration-100 ease text-[13px] sm:text-sm';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -53,13 +55,15 @@ const Header = () => {
             }
             onFocus={() => navigate('/posts/search')}
             placeholder="Search"
-            className="bg-white outline-none text-black text-sm px-2 pl-6 py-1 w-[350px] rounded-full placeholder:text-black placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
+            className="bg-white outline-none text-black text-sm px-2 pl-6 py-1 w-[150px] sm:w-[350px] rounded-full placeholder:text-black placeholder:focus:opacity-0 placeholder:focus:duration-200 placeholder:focus:ease-in"
           />
         </li>
 
         <li className="ml-auto mr-[10px] text-white capitalize">
           {isLoggedIn ? (
-            user.name
+            <p className="text-[13px] sm:text-sm">
+              {user.name.slice(0, user.name.indexOf(' '))}
+            </p>
           ) : (
             <NavLink
               to="/login"
