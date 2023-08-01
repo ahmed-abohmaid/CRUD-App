@@ -19,7 +19,6 @@ const Search = () => {
     }, 800);
 
     if (!searchTerm) {
-      dispatch(clearRecords());
       dispatch(fetchPosts());
     }
 
